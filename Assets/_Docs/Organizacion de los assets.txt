@@ -1,0 +1,214 @@
+
+(luego pongo la herarquia final)
+
+El objetivo de esta nota es poner archivos y decir donde deberian ir.
+
+- Estoy viendo ya con un ejemplo que es un problema grave anidar mucho las carpetas, porque cualquier mini cambio cambia las jerarquias por completo, es mejor tirar hacia una organizacion de muchas carpetas de pocos niveles, vamos generar carpetas cuando sea necesario solo pero la idea es como crear la carpeta 3Dmodels, y todo lo que sean modelos importados van ahi (y dentro de ella cuantos menos carpetas se creen mejor)
+- la convencion que ya tengo con _ la voy a dejar por no romper el proyecto ya que casitodas mis carpetas lo tienen PERO solo en el nv 1, a las de abajo si se lo quito, ya que el motivo es que mis carpetas no se mezclen con carpetas autogenerads como XR, XRI pero eso solo pasa en el primer nivel de Assets/
+
+
+
+1 ----------------
+Objetos importados de la recta
+
+Assets/_MyAssets/Modelos3D/Camino/pRecta.blend 
+Assets/_MyAssets/Modelos3D/Camino/pRecta.blend.meta 
+Assets/_MyAssets/Modelos3D/Camino/pRecta.blend1 
+Assets/_MyAssets/Modelos3D/Camino/pRecta.blend1.meta 
+
+Assets/
+  3DModels/         ← carpeta general para modelos 3D
+    Caminos/
+      pRecta.blend
+      pRecta.blend.meta
+
+
+En este caso esta bien pero habria que ponerlos en una carpeta de modelos general, ya si eso separar los hechos por mi o no dentro de Models/
+Pero la agrupacion esta bien hecha
+
+En cuento a los blend1 no sirven para nada en Unity por lo que se pueden borrar (lo que voy a hacer) o si se quieren conservar se pueden guardar en una carpeta de backups, aunque nadie los referencia ni usa:
+Assets/
+  Backups blender/
+    pRecta.blend1
+    pRecta.blend1.meta
+
+--------------- Resultado de este ejemplo
+
+Assets/
+  _3DModels/        
+    Caminos/
+      pRecta.blend
+      pRecta.blend.meta
+  _Backups de blender/
+    pRecta.blend1
+    pRecta.blend1.meta
+
+o solo
+
+Assets/
+  _3DModels/        
+    Caminos/
+      pRecta.blend
+      pRecta.blend.meta
+
+
+---------------------------------------------------------------------------------------
+
+
+
+2 -------------
+Ejemplo con un modelo3D con animacion "Engranaje1"
+
+Assets/_MyAssets/Modelos3D/piezas/Engranaje1.blend 
+Assets/_MyAssets/Modelos3D/piezas/Engranaje1.blend.meta 
+Assets/_MyAssets/Modelos3D/piezas/Engranaje1.controller 
+Assets/_MyAssets/Modelos3D/piezas/Engranaje1.controller.meta 
+
+Los controllers van dentro de otra carpeta animaciones y los modelos 3d irian en la carpeta antes mencionada.
+Además aprovecho y añado otras sub carpetas de animations
+
+
+--------------- Resultado de este ejemplo
+
+Assets/
+  _3DModels/
+    Piezas/
+      Engranaje1.blend
+      Engranaje1.blend.meta 
+  _Animations/
+    Controllers/
+      Engranaje1.controller
+      Engranaje1.controller.meta 
+
+(los .meta voy a dejar de ponderlos porque se mueven automaticamente)
+
+
+
+---------------------------------------------------------------------------------------
+
+
+
+
+3 -------------
+Caso de los paquetes técnicos como XR y XRI
+
+
+
+
+Está bien que queden al mismo nivel, sin tocarlos.
+Unity los actualiza automáticamente con los paquetes, así que moverlos podría causar conflictos en futuras actualizaciones.
+
+--------------- Resultado de este ejemplo
+
+Assets/
+├── Adaptive Performance/
+├── XR/
+├── XRI/
+
+
+
+Estructura final de los Assets ------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assets/
+── Animations/
+    ── Controllers/
+    ── Clips/
+
+── Art/
+    ── Materials/
+    ── Models/
+    ── Textures/
+        ── img/
+    ── Skyboxes/
+
+── Audio/
+    ── Music & SFX/
+    ── Sounds/
+
+── Prefabs/
+    ── Player/
+    ── Obstacles/
+
+── Scenes/
+    ── Menu/
+    ── Levels/
+
+── Scripts/
+    ── Core/
+    ── Gameplay/
+        ── Player/
+        ── Obstacles/
+        ── World/
+    ── UI/
+
+── Input/
+    ── PlayerInputActions.inputactions
+    ── UIActions.inputactions
+
+
+── ThirdParty/
+    ── DungeonPack/
+    ── SlimUI/
+    ── SupernovaSpaceship/
+    ── HessburgBomber/
+    ── TextMeshPro/
+
+── WIP/                         <- cosas experimentales o temporales
+
+
+── Adaptive Performance/  
+
+── XR/
+
+── XRI/                         <- paquetes tecnicos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+º
+
+

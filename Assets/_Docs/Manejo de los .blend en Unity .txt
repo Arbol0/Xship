@@ -1,0 +1,92 @@
+
+¿Dónde estaban los .blend antes de ser importados a unity? 
+
+Hay dos opciones comunes:
+
+
+- Opción A: Estaban en otra carpeta (por fuera del proyecto)
+es posible que los importaras desde otra ubicación (por ejemplo, tu carpeta de documentos o descargas), y en ese caso, Unity solo referencia el archivo original, no lo copia.
+
+Entonces al ser una referencia no esta Unity y solo crea esa referencia al importarlo
+
+
+
+
+- Opción B: Los creaste dentro del proyecto de Unity
+Por ejemplo en la carpeta de 3Dmodels los cree ahi orginalmente.
+
+Importación automatica:
+1. Se crea el .blend dentro de Unity
+2. Unity “ve” que apareció un nuevo archivo .blend dentro de Assets/.
+3. Unity llama automáticamente a Blender (en segundo plano) para generar un .fbx temporal, y así puede mostrar el modelo en el editor.
+
+
+Y en este caso: 
+- Se importa automaticamente sin hacer nada.
+- Normalmente no se ven los .fbx en tu proyecto Unity, aunque Unity los esté usando internamente, porque unity los almacena en una carpeta oculta y temporal dentro de: <TuProyecto>/Library/UnityTempFile-XXXX.fbx
+- Luego Unity importa ese .fbx temporal y genera los metadatos y assets visibles que tú ves en el editor
+- Solo deberías ver el archivo .blend
+
+
+Desde el Editor de Unity:
+- Aparece con un icono de modelo 3D (como si fuera un .fbx o .obj).
+- Puedes abrirlo y ver su jerarquía de mallas, materiales, etc.
+- Puedes arrastrarlo a la escena normalmente.
+
+
+Conversion a .fbx interna llamando a blender:
+- Unity detecta el .blend
+- Llama a Blender en modo “headless” (sin interfaz), usando un comando
+- Blender ejecuta un script interno (Unity-BlenderToFBX.py) que exporta el modelo a .fbx
+- Unity usa ese .fbx temporal para mostrar el modelo en el proyecto
+
+Import Error: El import error que te aparece significa que Unity no consigue completar alguno de esos pasos
+
+
+--------------------------------------------------------------------------------------
+Solucion para Import Error:
+
+- Instalar Blender
+- En el panel de Project, selecciona la carpeta donde tienes tus .blend (por ejemplo Assets/Models).
+- Haz clic derecho → Reimport.
+Unity volverá a procesar todos los .blend y regenerará los .fbx internos.
+- Y a lo mejor hay que añadir C:\Program Files\Blender Foundation\Blender 3.6 al path del sistema (y reiniciar). Y probar blender --version en terminal.
+
+--------------------------------------------------------------------------------------
+
+
+Cómo Unity enlaza los modelos y los prefabs:
+Los prefabs no “guardan” el modelo 3D dentro de sí, sino que simplemente referencian un archivo externo (como el .blend o el .fbx) con una referencia GUID interna que apunta al asset 3D.
+
+Cuando Unity no puede convertir el .blend a .fbx:
+- El modelo 3D no se genera correctamente en la base de datos de Unity (la carpeta Library/)
+- Unity pierde la referencia válida al asset 3D
+- Cualquier prefab, escena o material que dependa de ese modelo aparece con Mensajes de error tipo: Missing (Mesh Filter), Missing (Mesh Renderer). O incluso el prefab mostrando “Missing Prefab Asset”.
+No es que el prefab se haya roto en sí, sino que la referencia que contenía dejó de existir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

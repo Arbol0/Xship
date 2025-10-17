@@ -1,0 +1,21 @@
+
+
+Advertencia:
+Si mueves los archivos .blend o sus .meta manualmente fuera del Editor (por ejemplo, usando el explorador de Windows o Finder), Unity los verá como nuevos archivos y perderá las referencias de materiales, prefabs, o escenas que los usen.
+
+
+Dentro del Editor de Unity:
+- En el Project window, busca Assets/_MyAssets/Modelos3D/Camino/pRecta.blend.
+- Arrástralo dentro del editor hasta la nueva carpeta Assets/_3Dmodels/Camino/.
+	Unity moverá también su archivo .meta asociado.
+	Las referencias en prefabs, escenas o scripts se actualizarán automáticamente.
+
+Los prefabs seguirán funcionando sin problemas, siempre que los modelos se muevan dentro del editor. Unity ajustará las rutas internas porque conserva el GUID del .meta file, no la ruta de texto.
+
+Tambien es recomendable hacer un commit en git antes de mover Assets (si el juego funciona bien en ese momento, porque si ya esta fallando no va a ayudar revertir la version)
+
+
+
+
+
+TAMBIEN se pueden renombrar las carpetas siempre que se haga dentro del Editor
